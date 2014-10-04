@@ -23,7 +23,7 @@ class RideController < ApplicationController
 		drivers.each do |d|
 			if d.users.count == 0 #if the driver is not driving anyone
 				cost = distance(@new_user.start_location, @new_user.end_location) * RATES[0]
-				costs_newuser[driver.id] = [cost + FLAT_RATE]
+				costs_newuser[d.id] = [cost + FLAT_RATE]
 
 			#for cabs with 1 user, check what is the cheapest route, prioritize the guy on the cab
 			#when it comes to leaving the cab.
@@ -32,12 +32,12 @@ class RideController < ApplicationController
 				#if we can improve the cost for both users splitting the costs
 			  if change_route?(d, d.users[0], @new_user)[0] 
 			  	#remember the cost for new user
-			  	costs_newuser[driver.id] = change_route?(d, d.users[0], @new_user)[1]
+			  	costs_newuser[d.id] = change_route?(d, d.users[0], @new_user)[1]
 			  	#and remember who gets off first, what is the cost for the old user
 			  	#[user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
-			  	costs_infoaboutcab[driver.id] = change_route?(d, d.users[0], @new_user)[2..4]
+			  	costs_infoaboutcab[d.id] = change_route?(d, d.users[0], @new_user)[2..4]
 			  else
-			  	costs_newuser[driver.id] = change_route?(d, d.users[0], @new_user)[1]
+			  	costs_newuser[d.id] = change_route?(d, d.users[0], @new_user)[1]
 			  end	
 
 		  else
@@ -67,4 +67,4 @@ class RideController < ApplicationController
       
 		end
 	end
-end
+
