@@ -1,8 +1,8 @@
 == Uber Share
 
-Ride sharing service for Uber
+Ride sharing service for Uber.
 
-Written by:
+Created by:
 
 * Evan Walsh
 
