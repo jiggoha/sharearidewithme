@@ -1,4 +1,6 @@
 class RideController < ApplicationController
+	include RideHelper
+
 	def show
 	end
 
@@ -7,8 +9,8 @@ class RideController < ApplicationController
 
 		drivers = []
 		#for all drivers check how far away they are, remember only those closer than radius
-		Drivers.all.each do |d|
-			if distance(driver.current_location, @new_user.start_location) < RADIUS
+		Driver.all.each do |d|
+			if distance(d.current_location, @new_user.start_location) < RADIUS
 				drivers.push(d)
 			end
 		end
