@@ -20,7 +20,7 @@ class RideController < ApplicationController
 		costs_infoaboutcab = {}
 
 		#for every driver calculate cost of transportation for user 1
-		driver.each do |d|
+		drivers.each do |d|
 			if d.users.count == 0 #if the driver is not driving anyone
 				cost = distance(@new_user.start_location, @new_user.end_location) * RATES[0]
 				costs_newuser[driver.id] = [cost + FLAT_RATE]
@@ -59,6 +59,10 @@ class RideController < ApplicationController
 		else
 			driver.route = [@new_user.start_location, @new_user.end_location]
 		end
+		#update costs for both users and add the new user to driver
+		d.users[0].cost = costs_infoaboutcab[0]
+		@new_user.cost = @estimated_price
+		driver.user << @new_user
       
 		end
 	end
