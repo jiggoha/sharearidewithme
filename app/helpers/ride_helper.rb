@@ -3,7 +3,7 @@ module RideHelper
 		a = a.split(",")
 		b = b.split(",")
 
-		return ((a[0] - b[0])**2 + (a[1] - b[1])**2)) ** (0.5)
+		return ((a[0] - b[0])**2 + (a[1] - b[1])**2) ** (0.5)
 	end
 
   def change_route?(driver,user1,user2)
