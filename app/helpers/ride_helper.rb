@@ -37,7 +37,7 @@ module RideHelper
     end
 
     if (user1_currentcost > user1_lowerNewCost) and (user2_alonecost > user2_lowerNewCost)
-      [true, user1_newcost, user2_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
+      [true, user2_lowerNewCost, user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
     else
       [false, user1_currentcost]
     end
