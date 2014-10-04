@@ -55,6 +55,7 @@ class RideController < ApplicationController
 			 #if the driver has already picked up the guy we share with
 		  elsif (driver.route.length == 1)
         driver.route = [@new_user.start_location, costs_infoaboutcab[1].end_location, costs_infoaboutcab[2].end_location]
+      end
     #if we are not sharing
 		else
 			driver.route = [@new_user.start_location, @new_user.end_location]
