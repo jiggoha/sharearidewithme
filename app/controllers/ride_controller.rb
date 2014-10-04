@@ -67,4 +67,4 @@ class RideController < ApplicationController
       
 		end
 	end
-end
+
