@@ -3,7 +3,7 @@ class RideController < ApplicationController
 	end
 
 	def new_ride
-		@new_user = User.new(start_location: "1,1", end_location: "3,1")
+		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
 		drivers = []
 		#for all drivers check how far away they are, remember only those closer than radius

@@ -1,14 +1,14 @@
 <h1>Request a shared ride</h1>
 
-<%= form_for @new_user do |f| %>
-  <%= f.label :phone_number %>:
-  <%= f.text_field :phone_number %><br />
+<%= form_tag("/new_ride", method: "post") do %>
+  <%= label_tag :phone_number %>:
+  <%= text_field_tag :phone_number %><br />
 
-  <%= f.label :start_location %>:
-  <%= f.text_field :start_location %><br />
+  <%= label_tag :start_location %>:
+  <%= text_field_tag :start_location %><br />
 
-  <%= f.label :end_location %>:
-  <%= f.text_field :end_location %><br />
+  <%= label_tag :end_location %>:
+  <%= text_field_tag :end_location %><br />
 
-  <%= f.submit %>
+  <%= submit_tag %>
 <% end %>
