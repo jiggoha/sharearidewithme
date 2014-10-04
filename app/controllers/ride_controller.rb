@@ -44,10 +44,10 @@ class RideController < ApplicationController
 
 			end
 		end
-
-		@estimated_price = costs.values.min
-		@saved_cost = costs.values.max - @estimated_price
+		@estimated_price = costs_newuser.values.min[0]
+		@saved_cost = costs_newuser.values.max[0] - @estimated_price
 		#if we save anything (this means that we share the cab)
+		binding.pry
 		if @save_cost > 0
 			#if the driver has not yet picked up the guy you share with, set route
 			if(driver.route.length > 1)
