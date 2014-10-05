@@ -1,19 +1,154 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
-$body-bg:                       #ecf0f1;
-$font-family-sans-serif:        'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$navbar-height:                  45px;
-$navbar-default-bg:              white;
-$navbar-default-brand-color:     #0000ff;
-$brand-primary:                  #0000ff;
-$jumbotron-bg:                   white;
+$body-bg:                       #000;
+
+$blue: #1fbad6;
+$white: #fff;
+
+
+$font-family-sans-serif:        Lato, Helvetica, Arial, sans-serif;
 
 @import 'bootstrap';
 
-.center {
-     text-align: center;
+
+
+
+* {
+	box-sizing: border-box;
+}
+body {
+font-family: 'PT Sans Narrow', serif;
+font-size: 20px;
+}
+.inline {
+	display: inline-block;
+}
+.bd {
+	border: 1px dotted;
+	border-radius: 2px;
+}
+.border {
+	border: 1px solid black;
+}
+.row {
+	margin: 0 !important;
+}
+.ptSansNarrow {
+	font-family: 'PT Sans Narrow', serif;
+}
+.syncopate {
+	font-family: 'Syncopate', serif;
+}
+.oxygen {
+	font-family: 'Oxygen', serif;
 }
 
-.navbar-brand {
-     font-weight: bold;
+a {
+	color: black;
 }
+
+/*background: #fff;
+border: 1px solid;
+border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+-webkit-border-radius: 3px;*/
+
+.clickable {
+	cursor: pointer;
+	/*Makes it so that clickable things don't get highlighted*/
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.leftText {
+	text-align: left;
+}
+.centerText {
+	text-align: center;
+}
+.rightText {
+	text-align: right;
+}
+
+.leftFloat {
+	float: left;
+}
+.centerFloat {
+	margin-left: auto;
+	margin-right: auto;
+}
+.righttFloat {
+	float: right;
+}
+
+.verticalCenter {
+	vertical-align: center;
+}
+@media (min-width: 1600px) {
+}
+@media (max-width: 1600px) and (min-width: 1200px) {
+}
+@media (max-width: 1400px) and (min-width: 1200px) {
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+}
+@media (max-width: 992px) and (min-width: 768px) {
+}
+@media (max-width: 768px) {
+}
+@media print {
+}
+
+
+
+/*Eric Meyer CSS Reset*/
+	/* http://meyerweb.com/eric/tools/css/reset/ 
+	   v2.0 | 20110126
+	   License: none (public domain)
+	*/
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
