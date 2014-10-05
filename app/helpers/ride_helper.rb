@@ -40,7 +40,7 @@ module RideHelper
       user2_lowerNewCost = user2_newcost_1f
     end
 
-    if (user1_currentcost > user1_lowerNewCost) and (user2_alonecost > user2_lowerNewCost)
+    if ((user1_currentcost > user1_lowerNewCost) and (user2_alonecost > user2_lowerNewCost))
       Note.create(tag: "UBER", message: "Detected benefit; adding a passenger.")
       [true, user2_lowerNewCost, user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
     else
