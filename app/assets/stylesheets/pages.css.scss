@@ -4,6 +4,7 @@ h1, h2, h3, h4, h5, p {
 }
 h1 {
 	font-size: 37px;
+	font-style: helvetica;
 }
 h2 {
 	font-size: 30pt;
@@ -27,5 +28,50 @@ nav {
 }
 
 .section-padding {
+	padding-top: 3em;
+}
+
+.small-header-padding {
 	padding-top: 1em;
 }
+
+.constrain-background{
+	display: inline-block;
+	padding: 3px 3px 3px 3px;
+}
+
+.input-field-padding {
+	padding-top: 2em;
+}
+
+.input-style {
+	padding-top: 1em;
+	background-color: rgba(30,186,214,.5);
+}
+.input-field {
+	adding: 18px 15px 17px;
+	border: 1px solid #1fbad6;
+}
+
+.input-text {
+	border: 3px solid #1fbad6;
+	padding: 20px 40px; 
+	margin-top: 1em;
+	border-radius: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
