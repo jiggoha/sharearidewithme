@@ -71,6 +71,6 @@ class RideController < ApplicationController
 		@driver.users << @new_user
     @driver.save!
     @new_user.save!
-		end
+		redirect_to "ride#show"
 	end
-
+end
