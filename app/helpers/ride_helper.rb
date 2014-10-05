@@ -24,20 +24,16 @@ module RideHelper
 
     Note.create(tag: "UBER", message: "Checking whether adding a passenger is more economical for both passengers...")
     
-    if user1_newcost_1f >= user1_newcost_2f
+   if user1_newcost_1f + user2_newcost_1f >= user1_newcost_2f + user2_newcost_2f
       user1_lowerNewCost = user1_newcost_2f
+      user2_lowerNewCost = user2_newcost_2f
       whoGetsOffFirst = user1
       whoGetsOffSecond = user2
     else
       user1_lowerNewCost = user1_newcost_1f
+      user2_lowerNewCost = user2_newcost_1f
       whoGetsOffFirst = user2
       whoGetsOffSecond = user1
-    end
-
-    if user2_newcost_1f >= user2_newcost_2f
-      user2_lowerNewCost = user2_newcost_2f
-    else
-      user2_lowerNewCost = user2_newcost_1f
     end
 
     uber_benefit = user2_lowerNewCost - (user1_currentcost - user1_lowerNewCost)
