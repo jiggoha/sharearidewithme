@@ -14,5 +14,5 @@ driver5 = Driver.create(current_location: "-3,-3")
 driverA = Driver.create(current_location: "0,0")
 
 a = User.create(start_location: "0,1", end_location: "2,2")
-driverA.user << a
-driver.route = "[\"0,1\",\"2,2\"]"
+driverA.users << a
+driverA.route = "[\"0,1\",\"2,2\"]"
