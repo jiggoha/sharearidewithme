@@ -16,8 +16,8 @@ class RideController < ApplicationController
 	def new_ride
 		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
-		Log.create(tag: "User" + @new_user.id.to_s, message: "Asks for a ride.")
-    Log.create(tag: "UBER", message: "Receives request. Checks for availability of cars arond User" + @new_user.id.to_s + ".")
+		Note.create(tag: "User" + @new_user.id.to_s, message: "Asks for a ride.")
+    Note.create(tag: "UBER", message: "Receives request. Checks for availability of cars arond User" + @new_user.id.to_s + ".")
 
 		drivers = []
 		#for all drivers check how far away they are, remember only those closer than radius
@@ -27,7 +27,7 @@ class RideController < ApplicationController
 			end
 		end
 
-		Log.create(tag: "UBER", message: "Calculating the cheapest ride...")
+		Note.create(tag: "UBER", message: "Calculating the cheapest ride...")
 
 		#define local variables for costs
 		costs_newuser = {}
@@ -35,18 +35,18 @@ class RideController < ApplicationController
 
 		#for every driver calculate cost of transportation for user 1
 		drivers.each do |d|
-			Log.create(tag: "UBER", message: "Checking whether Driver" + d.id.to_s + " has passengers...")
+			Note.create(tag: "UBER", message: "Checking whether Driver" + d.id.to_s + " has passengers...")
 
 			if d.users.count == 0 #if the driver is not driving anyone
 				cost = distance(@new_user.start_location, @new_user.end_location) * RATES[0] + FLAT_RATE
 				costs_newuser[d.id] = [cost]
-				Log.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is " + cost.to_s + ".")
+				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is " + cost.to_s + ".")
 
 			#for cabs with 1 user, check what is the cheapest route, prioritize the guy on the cab
 			#when it comes to leaving the cab.
 			elsif d.users.count == 1
 				#if we can improve the cost for both users splitting the costs	
-				Log.create(tag: "UBER", message: "Driver" + d.id.to_s + " has 1 passenger.")	
+				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has 1 passenger.")	
 			  if change_route?(d, d.users[0], @new_user)[0] 
 			  	#remember the cost for new user
 			  	#We want an array not a float!
@@ -61,7 +61,7 @@ class RideController < ApplicationController
 			end
 		end
 
-		Log.create(tag: "UBER", message: "Choosing the most economical path and driver.")
+		Note.create(tag: "UBER", message: "Choosing the most economical path and driver.")
 
 		@estimated_price = costs_newuser.values.min[0]
 		@saved_cost = costs_newuser.values.max[0] - @estimated_price
@@ -78,18 +78,18 @@ class RideController < ApplicationController
 			if(!@driver.route.nil? and @driver.route.length > 1)
 			  @driver.route = [d.users[0].start_location, @new_user.start_location, costs_infoaboutcab[1].end_location, costs_infoaboutcab[2].end_location].to_s
 			  @driver.users[0].cost = costs_infoaboutcab[0]
-				Log.create(tag: "UBER", message: "Found User" + @new_user.id.to_s + " a beneficial ride to share. Rerouting the driver to pick up the other passenger. Stop points: " + @driver.route)
+				Note.create(tag: "UBER", message: "Found User" + @new_user.id.to_s + " a beneficial ride to share. Rerouting the driver to pick up the other passenger. Stop points: " + @driver.route)
 
 			 #if the driver has already picked up the guy we share with
 		  elsif (!@driver.route.nil? and @driver.route.length == 1)
         @driver.route = [@new_user.start_location, costs_infoaboutcab[1].end_location, costs_infoaboutcab[2].end_location].to_s
         @driver.users[0].cost = costs_infoaboutcab[0]
-        Log.create(tag: "UBER", message: "Found User" + @new_user.id.to_s + " a beneficial ride to join. Rerouting the driver to pick up User" + @new_user.id.to_s + ". Stop points: " + @driver.route + ".")
+        Note.create(tag: "UBER", message: "Found User" + @new_user.id.to_s + " a beneficial ride to join. Rerouting the driver to pick up User" + @new_user.id.to_s + ". Stop points: " + @driver.route + ".")
       end
     #if we are not sharing
 		else
 			@driver.route = [@new_user.start_location, @new_user.end_location].to_s
-		Log.create(tag: "UBER", message: "Cannot find User" + @new_user.id.to_s + " a beneficial ride to share. Sending a separate ride. Stop points: " + @driver.route + ".")
+		Note.create(tag: "UBER", message: "Cannot find User" + @new_user.id.to_s + " a beneficial ride to share. Sending a separate ride. Stop points: " + @driver.route + ".")
 		end
 
 		#update costs for both users and add the new user to driver

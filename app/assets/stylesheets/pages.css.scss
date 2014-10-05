@@ -16,6 +16,13 @@ h4 {
 	font-size: 20pt;
 }
 
+a {
+	color: #fff !important;
+}
+a:hover {
+	border-bottom: 0px !important;
+}
+
 body {
 	background: #070716 url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/home/map-web@1x.gif) 
 }
@@ -67,6 +74,33 @@ nav {
 	border-radius: 3px;
 	font-size: 16pt;
 }
+
+
+
+
+
+.log-field {
+	background: rgba(255, 255, 255, 0.8);
+	margin-top: 3em;
+	padding: 2em;
+	max-height: 500px;
+	overflow-y: scroll;
+	border-radius: 5px;
+}
+
+
+
+
+
+.success-field {
+	padding-top: 11em;
+}
+.hack-padding {
+	padding-top: 4em;
+}
+
+
+
 
 
 
