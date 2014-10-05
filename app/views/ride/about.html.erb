@@ -6,11 +6,12 @@
   	
   	<div class="log-field">
 
-  	<table>
+  		<table>
 			<% @note.order("created_at ASC").each do |l|%>
 				<tr>
-					<td><%= l[:tag] %></td>
+
 					<td><%= l[:message] %></td>
+					
 				</tr>
 			<% end %>
 		</table>
