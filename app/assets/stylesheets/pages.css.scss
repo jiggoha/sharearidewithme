@@ -20,7 +20,7 @@ a {
 	color: #fff !important;
 }
 a:hover {
-	border-bottom: 0px !important;
+	text-decoration: none !important;
 }
 
 body {
@@ -102,7 +102,14 @@ nav {
 }
 
 
-
+.link-box {
+	padding: 5px 20px;
+	border: 2px solid #1fbad6;
+	border-radius: 3px;
+}
+.link-box:hover {
+	background-color: rgba(30,186,214,.3);
+}
 
 
 
