@@ -71,6 +71,7 @@ class RideController < ApplicationController
 				@driver = Driver.find(key)
 			end
 		}
+
 		#if we save anything (this means that we share the cab)
 		if @saved_cost > 0
 			#if the driver has not yet picked up the guy you share with, set route
@@ -96,6 +97,6 @@ class RideController < ApplicationController
 		@driver.users << @new_user
     @driver.save!
     @new_user.save!
-		redirect_to :controller => 'ride', :action => 'show', :id => @driver.id
+		redirect_to :controller => 'ride', :action => 'show', :id => @driver.id, :saved_cost => @saved_cost
 	end
 end

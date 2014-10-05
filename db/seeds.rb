@@ -6,9 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-driver = Driver.create(current_location: "0,0")
+driver1 = Driver.create(current_location: "-5,0")
+driver2 = Driver.create(current_location: "-3,2")
+driver3 = Driver.create(current_location: "-4.5,2")
+driver4 = Driver.create(current_location: "-4,-2")
+driver5 = Driver.create(current_location: "-3,-3")
+driverA = Driver.create(current_location: "0,0")
 
 a = User.create(start_location: "0,1", end_location: "2,2")
-b = User.create(start_location: "1,1", end_location: "2,3")
-
-first = Log.create(tag: "none", message: "initial setup")
+driverA.users << a
+driverA.route = "[\"0,1\",\"2,2\"]"
