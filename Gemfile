@@ -26,9 +26,9 @@ gem 'spring',        group: :development
 
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
-#group :development, :test do
-#	gem 'sqlite3'
-#end
+group :development, :test do
+	gem 'sqlite3'
+end
 
 group :production do
 	gem 'pg'
