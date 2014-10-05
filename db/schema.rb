@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20141005065319) do
     t.string   "route"
   end
 
-  create_table "logs", force: true do |t|
+  create_table "histories", force: true do |t|
     t.string   "tag"
     t.text     "message"
     t.datetime "created_at"
