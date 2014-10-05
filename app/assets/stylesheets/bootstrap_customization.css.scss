@@ -6,7 +6,7 @@ $blue: #1fbad6;
 $white: #fff;
 
 
-$font-family-sans-serif:        Lato, Helvetica, Arial, sans-serif;
+$font-family-sans-serif: Helvetica, Arial, sans-serif;
 
 @import 'bootstrap';
 
@@ -42,6 +42,11 @@ font-size: 20px;
 .oxygen {
 	font-family: 'Oxygen', serif;
 }
+.quicksand {
+	font-family: 'Quicksand', serif;
+}
+
+
 
 a {
 	color: black;
