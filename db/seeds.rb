@@ -10,3 +10,5 @@ driver = Driver.create(current_location: "0,0")
 
 a = User.create(start_location: "0,1", end_location: "2,2")
 b = User.create(start_location: "1,1", end_location: "2,3")
+
+first = Log.create(tag: "none", message: "initial setup")

@@ -1,7 +1,6 @@
-<div class="jumbotron">
-	<h1>About</h1>
-</div>
-<div class="jumbotron">
-	<p>Ride sharing for Uber</p>
-	<p>Put some more stuff here later</p>
-</div>
+<h1>Activity Log</h1>
+
+<% @log.each do |d|%>
+	<%= d[:tag] %><br>
+	<%= d[:message] %><br><br>
+<% end %>

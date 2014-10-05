@@ -7,6 +7,8 @@ module RideHelper
 	end
 
   def change_route?(driver,user1,user2)
+    Log.create(tag: "UBER", message: "Calculating prices for all possible routes...")
+
     user1_currentcost = distance(user1.start_location, user1.end_location) * RATES[0] + FLAT_RATE
     user2_alonecost = distance(user2.start_location, user2.end_location) * RATES[0] + FLAT_RATE
 
@@ -20,6 +22,8 @@ module RideHelper
 
     user1_newcost_1f = distance(driver.current_location, user2.start_location) * RATES[0] + distance(user2.start_location, user1.end_location) * RATES[1] + distance(user2.start_location, user2.end_location) * RATES[1] + distance(user1.end_location, user2.end_location)
 
+    Log.create(tag: "UBER", message: "Checking whether adding a passenger is more economical for both passengers...")
+    
     if user1_newcost_1f >= user1_newcost_2f
       user1_lowerNewCost = user1_newcost_2f
       whoGetsOffFirst = user2
@@ -37,8 +41,10 @@ module RideHelper
     end
 
     if (user1_currentcost > user1_lowerNewCost) and (user2_alonecost > user2_lowerNewCost)
+      Log.create(tag: "UBER", message: "Detected benefit; adding a passenger.")
       [true, user2_lowerNewCost, user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
     else
+      Log.create(tag: "UBER", message: "Not economical enough to add a passenger.")
       [false, user1_currentcost]
     end
   end

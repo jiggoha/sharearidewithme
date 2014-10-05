@@ -1,8 +1,3 @@
-Your Uber is on its way! Your estimated wait time is _____. You will save at least ____ with our sharing Uber sharing system.
-
-<%@log.all.each do |d|%>
-<%=d[tag]%>
-<%=d[message]%>
-<%end%>
+Your Uber is on its way! Your estimated wait time is _____. You will save at least ____ with our sharing Uber sharing system.<br>
 
 <%= link_to "I'm home!", {controller: "ride", action: "dropoff", driver_id: @driver.id} %>
