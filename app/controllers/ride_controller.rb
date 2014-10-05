@@ -20,11 +20,10 @@ class RideController < ApplicationController
 	end
 
 	def new_ride
-		@uber_profit = 0
 		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
-		Note.create(tag: "User" + @new_user.id.to_s, message: "Asks for a ride.")
-        Note.create(tag: "UBER", message: "Receives request. Checks for availability of cars around User" + @new_user.id.to_s + ".")
+		Note.create(tag: "User", message: @new_user.id.to_s + " asks for a ride.")
+        Note.create(tag: "UBER", message: "Receives request. Checks for availability of cars arond User" + @new_user.id.to_s + ".")
 
 		drivers = []
 		#for all drivers check how far away they are, remember only those closer than radius
@@ -46,7 +45,7 @@ class RideController < ApplicationController
 			if d.users.count == 0 #if the driver is not driving anyone
 				cost = distance(@new_user.start_location, @new_user.end_location) * RATES[0] + FLAT_RATE
 				costs_newuser[d.id] = [cost]
-				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is $#{'%.02f' % cost}.")
+				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is " + cost.to_s + ".")
 
 			#for cabs with 1 user, check what is the cheapest route, prioritize the guy on the cab
 			#when it comes to leaving the cab.
@@ -59,6 +58,7 @@ class RideController < ApplicationController
 			  	costs_newuser[d.id] = [a[1]]
 			  	#and remember who gets off first, what is the cost for the old user
 			  	#[user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
+
 			  	costs_infoaboutcab[d.id] = a
 			  	Note.create(tag: "UBER", message: "Estimated lower shared cost for User" + @new_user.id.to_s + " is $#{'%.02f' % costs_newuser[d.id][0]}" + ".")
 			  	Note.create(tag: "UBER", message: "Estimated lower shared cost for User" + d.users[0].id.to_s + " (already in cab) is $#{'%.02f' % costs_infoaboutcab[d.id][2]}" + ".")
@@ -68,6 +68,7 @@ class RideController < ApplicationController
 			  	#array not float
 			  	costs_newuser[d.id] = [change_route?(d, d.users[0], @new_user)[1]]
 			  	Note.create(tag: "UBER", message: "Estimated cost for User" + @new_user.id.to_s + " is $#{'%.02f' % costs_newuser[d.id][1]}" + ".")
+
 			  end	
 			end
 		end
@@ -101,6 +102,7 @@ class RideController < ApplicationController
         #if we are not sharing
 		else
 			@driver.route = [@new_user.start_location, @new_user.end_location].to_s
+
 		Note.create(tag: "UBER", message: "Cannot find User" + @new_user.id.to_s + " a beneficial ride to share. Sending a separate ride. Stop points: " + @driver.route.to_s + ".")
 		@saved_cost_old_user = 0
 		end
@@ -108,9 +110,9 @@ class RideController < ApplicationController
 		#update costs for both users and add the new user to driver
 		@new_user.cost = @estimated_price
 		@driver.users << @new_user
-
     	@driver.save!
     	@new_user.save!
+
 		redirect_to :controller => 'ride', :action => 'show', :id => @driver.id, :saved_cost_new_user => @saved_cost, :saved_cost_old_user => @saved_cost_old_user, :uber_profit => @uber_profit
 	end
 end
