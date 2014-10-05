@@ -26,12 +26,12 @@ module RideHelper
     
     if user1_newcost_1f >= user1_newcost_2f
       user1_lowerNewCost = user1_newcost_2f
-      whoGetsOffFirst = user2
-      whoGetsOffSecond = user1
-    else
-      user1_lowerNewCost = user1_newcost_1f
       whoGetsOffFirst = user1
       whoGetsOffSecond = user2
+    else
+      user1_lowerNewCost = user1_newcost_1f
+      whoGetsOffFirst = user2
+      whoGetsOffSecond = user1
     end
 
     if user2_newcost_1f >= user2_newcost_2f

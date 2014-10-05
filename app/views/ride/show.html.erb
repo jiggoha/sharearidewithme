@@ -12,8 +12,6 @@
       <h3 class="hack-padding">You also helped Uber develop by increasing their revenue by
         <h1 style="font-size: 40pt;"><%= number_to_currency(params[:uber_profit], :unit => "$") %> </h1>
 
-      <h3 class="hack-padding">Share Uber was able to provide this service by also saving <%#= number_to_currency(params[:unsaved_cost], unit: "%"]) %></h3>
-
   		<h3 class="hack-padding">
 	  		
 				<%= link_to "Click here Once You Arrive", {controller: "ride", action: "dropoff", driver_id: @driver.id} %>

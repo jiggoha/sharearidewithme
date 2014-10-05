@@ -45,8 +45,8 @@ class RideController < ApplicationController
 			if d.users.count == 0 #if the driver is not driving anyone
 				cost = distance(@new_user.start_location, @new_user.end_location) * RATES[0] + FLAT_RATE
 				costs_newuser[d.id] = [cost]
-				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is " + cost.to_s + ".")
-
+				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is $#{'%.02f' % cost}." )
+				@uber_profit = 0
 			#for cabs with 1 user, check what is the cheapest route, prioritize the guy on the cab
 			#when it comes to leaving the cab.
 			elsif d.users.count == 1
@@ -67,8 +67,8 @@ class RideController < ApplicationController
 			  else
 			  	#array not float
 			  	costs_newuser[d.id] = [change_route?(d, d.users[0], @new_user)[1]]
-			  	Note.create(tag: "UBER", message: "Estimated cost for User" + @new_user.id.to_s + " is $#{'%.02f' % costs_newuser[d.id][1]}" + ".")
-
+			  	Note.create(tag: "UBER", message: "Estimated cost for User" + @new_user.id.to_s + " is $#{'%.02f' % costs_newuser[d.id][0]}" + ".")
+			  	@uber_profit = 0
 			  end	
 			end
 		end
@@ -87,24 +87,24 @@ class RideController < ApplicationController
 		if @saved_cost > 0
 			#if the driver has not yet picked up the guy you share with, set route
 		  if(!@driver.route.nil? and @driver.route.length > 1)
-		     @driver.route = [d.users[0].start_location, @new_user.start_location, costs_infoaboutcab[@driver.id][4].end_location, costs_infoaboutcab[@driver.id][5].end_location].to_s
+		     @driver.route = [@driver.current_location, d.users[0].start_location, @new_user.start_location, costs_infoaboutcab[@driver.id][4].end_location, costs_infoaboutcab[@driver.id][5].end_location].to_s
 			 @driver.users[0].cost = costs_infoaboutcab[@driver.id][1]
 			 Note.create(tag: "UBER", message: "Found User" + @new_user.id.to_s + " a beneficial ride to share. Rerouting the driver to pick up the other passenger. Stop points: " + @driver.route.to_s)
 			 @saved_cost_old_user = costs_infoaboutcab[@driver.id].last
 			 #if the driver has already picked up the guy we share with
 		  else
-		  	binding.pry
-           @driver.route = [@new_user.start_location, costs_infoaboutcab[@driver.id][4].end_location, costs_infoaboutcab[@driver.id][5].end_location].to_s
+           @driver.route = [@driver.current_location, @new_user.start_location, costs_infoaboutcab[@driver.id][4].end_location, costs_infoaboutcab[@driver.id][5].end_location].to_s
            @driver.users[0].cost = costs_infoaboutcab[@driver.id][1]
            Note.create(tag: "UBER", message: "Found User" + @new_user.id.to_s + " a beneficial ride to join. Rerouting the driver to pick up User" + @new_user.id.to_s + ". Stop points: " + @driver.route.to_s + ".")
            @saved_cost_old_user = costs_infoaboutcab[@driver.id].last
           end
         #if we are not sharing
 		else
-			@driver.route = [@new_user.start_location, @new_user.end_location].to_s
+			@driver.route = [@driver.current_location, @new_user.start_location, @new_user.end_location].to_s
 
 		Note.create(tag: "UBER", message: "Cannot find User" + @new_user.id.to_s + " a beneficial ride to share. Sending a separate ride. Stop points: " + @driver.route.to_s + ".")
 		@saved_cost_old_user = 0
+		@uber_profit = 0
 		end
 
 		#update costs for both users and add the new user to driver
