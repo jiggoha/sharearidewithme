@@ -1,11 +1,13 @@
-Uber Ride Share
+Share a Ride with Me (sharearidewith.me)
 
-Ride sharing service for Uber.
+Application created during HackMIT2014. Improves Uber functionality by providing possibility of constant consideration of taxi sharing and cost reducting paths by using a variation of the Bellman-Ford algorithm.
 
 Created by:
 
-* Stasiek Świdwiński
+* Stanislaw (Stan) Świdwiński
 
-* Jiaao Hou
+* Jiaao (Jay) Hou
+
+* Alex Akagi
 
 * Evan Walsh
