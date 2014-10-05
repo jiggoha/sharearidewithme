@@ -1,14 +1,20 @@
-<h1>Request a shared ride</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">
+			<h1>Request a shared ride</h1>
+		</div>
+	</div>
+	<div class="panel-body">
+		<%= form_tag("/new_ride", method: "post") do %>
+  	<%= label_tag :phone_number %>:
+  	<%= text_field_tag :phone_number %><br />
 
-<%= form_tag("/new_ride", method: "post") do %>
-  <%= label_tag :phone_number %>:
-  <%= text_field_tag :phone_number %><br />
+  	<%= label_tag :start_location %>:
+  	<%= text_field_tag :start_location %><br />
 
-  <%= label_tag :start_location %>:
-  <%= text_field_tag :start_location %><br />
+  	<%= label_tag :end_location %>:
+  	<%= text_field_tag :end_location %><br />
 
-  <%= label_tag :end_location %>:
-  <%= text_field_tag :end_location %><br />
-
-  <%= submit_tag %>
-<% end %>
+  	<%= submit_tag %>
+	<% end %>
+</div>

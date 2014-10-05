@@ -1,6 +1,8 @@
 Your Uber is on its way! Your estimated wait time is _____. You will save at least ____ with our sharing Uber sharing system.
 
-<%# hidden_field_tag 'driver_id', {driver_id: @driver.id} %>
-<%#= link_to "Add to cart", {:controller => "car", :action => "add_to_cart", :car => car.id }%>
+<%@log.all.each do |d|%>
+<%=d[tag]%>
+<%=d[message]%>
+<%end%>
 
 <%= link_to "I'm home!", {controller: "ride", action: "dropoff", driver_id: @driver.id} %>

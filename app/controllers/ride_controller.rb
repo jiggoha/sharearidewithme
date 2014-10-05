@@ -14,6 +14,7 @@ class RideController < ApplicationController
 	end
 
 	def new_ride
+		@log = Log.all
 		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
 		drivers = []
@@ -60,18 +61,17 @@ class RideController < ApplicationController
 				@driver = Driver.find(key)
 			end
 		}
-
 		#if we save anything (this means that we share the cab)
 		if @saved_cost > 0
 			#if the driver has not yet picked up the guy you share with, set route
-			if(@driver.route.length > 1)
+			if(!@driver.route.nil? and @driver.route.length > 1)
 			  @driver.route = [d.users[0].start_location, @new_user.start_location, costs_infoaboutcab[1].end_location, costs_infoaboutcab[2].end_location].to_s
 			  @driver.users[0].cost = costs_infoaboutcab[0]
 			 #if the driver has already picked up the guy we share with
-		  elsif (@driver.route.split(", ").length == 1)
-        @driver.route = [@new_user.start_location, costs_infoaboutcab[1].end_location, costs_infoaboutcab[2].end_location].to_s
-        @driver.users[0].cost = costs_infoaboutcab[0]
-      end
+		    elsif (!@driver.route.nil? and @driver.route.length == 1)
+              @driver.route = [@new_user.start_location, costs_infoaboutcab[1].end_location, costs_infoaboutcab[2].end_location].to_s
+              @driver.users[0].cost = costs_infoaboutcab[0]
+            end
     #if we are not sharing
 		else
 			@driver.route = [@new_user.start_location, @new_user.end_location].to_s
