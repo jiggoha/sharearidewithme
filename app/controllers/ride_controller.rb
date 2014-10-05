@@ -11,7 +11,7 @@ class RideController < ApplicationController
 	end
 
 	def new_ride
-		@log = Log.find_each
+		@log = Log.all
 		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
 		drivers = []
