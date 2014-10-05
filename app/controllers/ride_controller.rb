@@ -23,7 +23,7 @@ class RideController < ApplicationController
 		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
 		Note.create(tag: "User", message: @new_user.id.to_s + " asks for a ride.")
-        Note.create(tag: "UBER", message: "Receives request. Checks for availability of cars arond User" + @new_user.id.to_s  + ".")
+        Note.create(tag: "UBER", message: "Receives request. Checks for availability of cars arond User" + @new_user.id.to_s + ".")
 
 		drivers = []
 		#for all drivers check how far away they are, remember only those closer than radius
@@ -45,7 +45,7 @@ class RideController < ApplicationController
 			if d.users.count == 0 #if the driver is not driving anyone
 				cost = distance(@new_user.start_location, @new_user.end_location) * RATES[0] + FLAT_RATE
 				costs_newuser[d.id] = [cost]
-				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is $#{'%.02f' % cost}.")
+				Note.create(tag: "UBER", message: "Driver" + d.id.to_s + " has no passengers. Estimated cost is " + cost.to_s + ".")
 
 			#for cabs with 1 user, check what is the cheapest route, prioritize the guy on the cab
 			#when it comes to leaving the cab.
