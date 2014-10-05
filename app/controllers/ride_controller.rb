@@ -22,7 +22,7 @@ class RideController < ApplicationController
 	def new_ride
 		@new_user = User.create(phone_number: params[:phone_number], start_location: params[:start_location], end_location: params[:end_location])
 
-		Note.create(tag: "User" + @new_user.id.to_s, message: "Asks for a ride.")
+		Note.create(tag: "User", message: @new_user.id.to_s + " asks for a ride.")
         Note.create(tag: "UBER", message: "Receives request. Checks for availability of cars arond User" + @new_user.id.to_s + ".")
 
 		drivers = []
