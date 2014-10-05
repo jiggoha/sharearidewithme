@@ -2,6 +2,13 @@ class RideController < ApplicationController
 	include RideHelper
 
 	def show
+		@driver = Driver.find(params[:id])
+	end
+
+	def dropoff
+		binding.pry
+		Driver.find(:driver_id).users = []
+		Driver.find(:driver_id).save!
 	end
 
 	def new_ride
@@ -28,19 +35,21 @@ class RideController < ApplicationController
 			#for cabs with 1 user, check what is the cheapest route, prioritize the guy on the cab
 			#when it comes to leaving the cab.
 			elsif d.users.count == 1
-				
 				#if we can improve the cost for both users splitting the costs
 			  if change_route?(d, d.users[0], @new_user)[0] 
 			  	#remember the cost for new user
+			  	#We want an array not a float!
 			  	costs_newuser[d.id] = [change_route?(d, d.users[0], @new_user)[1]]
 			  	#and remember who gets off first, what is the cost for the old user
 			  	#[user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
 			  	costs_infoaboutcab[d.id] = change_route?(d, d.users[0], @new_user)[2..4]
 			  else
+			  	#array not float
 			  	costs_newuser[d.id] = [change_route?(d, d.users[0], @new_user)[1]]
 			  end	
 			end
 		end
+
 		@estimated_price = costs_newuser.values.min[0]
 		@saved_cost = costs_newuser.values.max[0] - @estimated_price
 
@@ -71,6 +80,6 @@ class RideController < ApplicationController
 		@driver.users << @new_user
     @driver.save!
     @new_user.save!
-		redirect_to "ride#show"
+		redirect_to :controller => 'ride', :action => 'show', :id => @driver.id
 	end
 end
