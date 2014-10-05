@@ -5,10 +5,16 @@
   	<h2 class="centerText">Activity Log</h2>
   	
   	<div class="log-field">
-		<% @note.order("created_at ASC").each do |l|%>
-			<%= l[:tag] %><br>
-			<%= l[:message] %><br><br>
-		<% end %>
+
+  	<table>
+			<% @note.order("created_at ASC").each do |l|%>
+				<tr>
+					<td><%= l[:tag] %></td>
+					<td><%= l[:message] %></td>
+				</tr>
+			<% end %>
+		</table>
+
 	</div>
 
   </div>

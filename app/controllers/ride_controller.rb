@@ -15,6 +15,8 @@ class RideController < ApplicationController
 	def dropoff
 		Driver.find(params[:driver_id]).users = []
 		Driver.find(params[:driver_id]).save!
+
+		redirect_to root_path
 	end
 
 	def new_ride
