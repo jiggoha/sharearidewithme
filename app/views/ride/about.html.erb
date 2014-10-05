@@ -9,8 +9,9 @@
   		<table>
 			<% @note.order("created_at ASC").each do |l|%>
 				<tr>
-					<td class="table-padding"><%= l[:tag] %></td>
-					<td class="table-padding"><%= l[:message] %></td>
+
+					<td><%= l[:message] %></td>
+					
 				</tr>
 			<% end %>
 		</table>
