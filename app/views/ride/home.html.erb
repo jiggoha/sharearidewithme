@@ -4,7 +4,7 @@
     <div class="col-xs-2">
       <!-- placeholder -->
     </div>
-    <h2 class="uber-title centerText col-xs-8">UBER</h2>
+    <h2 class="uber-title centerText col-xs-8 syncopate">UBER SHARE</h2>
     <!-- <div class="uber-logo"></div> -->
     <div class="col-xs-2">
 
@@ -15,7 +15,7 @@
       </div>
 
       <div class="col-xs-offset-1 col-xs-3 nav-button-field">
-      	<p class="clickable oxygen">Log</p>
+      	<p class="clickable oxygen">Logs</p>
       </div>
 
     </div>
@@ -28,7 +28,34 @@
       <p class="small-header-padding">
       	Enter your information for an Uber carpool and hit enter.
       </p>
-      <form class="input-field">
+
+
+    
+    <%= form_tag("/new_ride", method: "post", class: "input-field") do %>
+      	<div class="input-padding">
+      		<div class="input-border">
+ 	     		<input id="phone_number" name="phone_number" class="input-text centerText" type="text"  placeholder="Phone Number"><br>
+ 	     	</div>
+ 	    </div>
+ 	    <div class="input-padding">
+      		<div class="input-border">
+ 	     		<input id="start_location" name="start_location" class="input-text centerText" type="text" placeholder="Current Location"><br>
+ 	     	</div>
+ 	    </div>
+
+ 	    <div class="input-padding">
+      		<div class="input-border">
+ 	     		<input id="end_location" name="end_location" class="input-text centerText" type="text" placeholder="Destination"><br>
+ 	     	</div>
+ 	    </div>
+ 	    <%= submit_tag %>
+ 	<% end %>
+    <div class="col-xs-2"></div>
+  </section>
+</body>
+
+<!-- 
+    <form class="input-field">
       	<div class="input-padding">
       		<div class="input-border">
  	     		<input class="input-text centerText" type="text" name="phone" placeholder="Phone Number"><br>
@@ -44,29 +71,5 @@
  	     		<input class="input-text centerText" type="text" name="destination" placeholder="Destination"><br>
  	     	</div>
  	    </div>
-
-
-    </div>
-    <div class="col-xs-2"></div>
-  </section>
-
-
-</body>
-
-
-
-
-<!-- <h1>Request a shared ride</h1>
-
-<%= form_tag("/new_ride", method: "post") do %>
-  <%= label_tag :phone_number %>:
-  <%= text_field_tag :phone_number %><br />
-
-  <%= label_tag :start_location %>:
-  <%= text_field_tag :start_location %><br />
-
-  <%= label_tag :end_location %>:
-  <%= text_field_tag :end_location %><br />
-
-  <%= submit_tag %>
-<% end %> -->
+    </form> 
+-->
