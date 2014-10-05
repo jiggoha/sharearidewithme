@@ -1,11 +1,11 @@
-== Uber Share
+Uber Ride Share
 
 Ride sharing service for Uber.
 
 Created by:
 
-* Evan Walsh
-
 * Stasiek Świdwiński
 
 * Jiaao Hou
+
+* Evan Walsh
