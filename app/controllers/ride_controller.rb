@@ -6,9 +6,8 @@ class RideController < ApplicationController
 	end
 
 	def dropoff
-		binding.pry
-		Driver.find(:driver_id).users = []
-		Driver.find(:driver_id).save!
+		Driver.find(params[:driver_id]).users = []
+		Driver.find(params[:driver_id]).save!
 	end
 
 	def new_ride
@@ -58,7 +57,6 @@ class RideController < ApplicationController
 				@driver = Driver.find(key)
 			end
 		}
-
 
 		#if we save anything (this means that we share the cab)
 		if @saved_cost > 0
