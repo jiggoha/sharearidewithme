@@ -17,10 +17,14 @@ h4 {
 	font-size: 20pt;
 }
 
+body {
+	background: #070716 url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/home/map-web@1x.gif) 
+}
 
 nav {
 	height: 80px;
-	border-bottom: solid 1px #fff;
+	border-bottom: solid 1px #adadad;
+	background-color: rgba(0, 0, 0, 0.6);
 }
  
 .uber-title {
