@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   end
 
   def about
-  	@log = Log.all
+  	@note = Note.all
   end	
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

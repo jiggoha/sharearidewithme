@@ -27,7 +27,7 @@
   	<div class="col-xs-offset-3 col-xs-6">
   		<h2>Your Uber is on its way!</h2>
   		<h3 class="hack-padding">You have also managed to save
-  			<h1 style="font-size: 40pt;">$ <%= params[:saved_cost] %> </h1>
+  			<h1 style="font-size: 40pt;"> <%= number_to_currency(params[:saved_cost], :unit => "$") %> </h1>
 
   		</h3>
 

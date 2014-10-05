@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005015046) do
+ActiveRecord::Schema.define(version: 20141005065319) do
 
   create_table "drivers", force: true do |t|
     t.string   "current_location"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20141005015046) do
   end
 
   create_table "logs", force: true do |t|
+    t.string   "tag"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: true do |t|
     t.string   "tag"
     t.text     "message"
     t.datetime "created_at"
