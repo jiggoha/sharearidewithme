@@ -2,7 +2,7 @@
 RADIUS = 25
 
 # price per mile depending on number of passengers
-RATES = [2,1.1]
+RATES = [2,0.5]
 
 # flat rate for ordering a taxi
 FLAT_RATE = 3

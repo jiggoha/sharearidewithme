@@ -24,7 +24,7 @@
   <div class="col-xs-offset-3 col-xs-6 oxygen" style="padding-top: 1em;">
   	<h2 class="centerText">Activity Log</h2>
   	<div class="log-field">
-		<% @log.each do |l|%>
+		<% @note.order("created_at ASC").each do |l|%>
 			<%= l[:tag] %><br>
 			<%= l[:message] %><br><br>
 		<% end %>]
