@@ -1,6 +1,9 @@
 class RideController < ApplicationController
 	include RideHelper
 
+	def home
+	end
+
 	def show
 		@driver = Driver.find(params[:id])
 	end
