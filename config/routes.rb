@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   root "ride#home"
-  get "about" => "application#about"
   post "new_ride" => "ride#new_ride"
   get "/show", to: "ride#show", as: 'show'
   get "/dropoff", to: "ride#dropoff", as: 'dropoff'
+  get "/about", to: "ride#about", as: 'about'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

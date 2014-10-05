@@ -4,6 +4,10 @@ class RideController < ApplicationController
 	def home
 	end
 
+  	def about
+  		@note = Note.all
+	end	
+
 	def show
 		@driver = Driver.find(params[:id])
 	end
