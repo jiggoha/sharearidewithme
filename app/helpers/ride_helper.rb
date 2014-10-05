@@ -11,12 +11,12 @@ module RideHelper
     user2_alonecost = distance(user2.start_location, user2.end_location) * RATES[0] + FLAT_RATE
 
     #user2 gets off before user1 gets off
-    user2_cost_2f = distance(user2.start_location, user2.end_location) * RATES[1] + FLAT_RATE
+    user2_newcost_2f = distance(user2.start_location, user2.end_location) * RATES[1] + FLAT_RATE
     
     user1_newcost_2f = distance(driver.current_location, user2.start_location) * RATES[0] + distance(user2.start_location, user2.end_location) * RATES[1] + distance(user1.end_location, user2.end_location) * RATES[0] + FLAT_RATE
 
     # user1 gets off after user2 gets off
-    user2_cost_1f = distance(user2.start_location, user2.end_location)*RATES[1] + distance(user1.end_location, user2.end_location) * RATES[0] + FLAT_RATE
+    user2_newcost_1f = distance(user2.start_location, user2.end_location)*RATES[1] + distance(user1.end_location, user2.end_location) * RATES[0] + FLAT_RATE
 
     user1_newcost_1f = distance(driver.current_location, user2.start_location) * RATES[0] + distance(user2.start_location, user1.end_location) * RATES[1] + distance(user2.start_location, user2.end_location) * RATES[1] + distance(user1.end_location, user2.end_location)
 

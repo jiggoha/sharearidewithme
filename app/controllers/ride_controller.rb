@@ -32,16 +32,13 @@ class RideController < ApplicationController
 				#if we can improve the cost for both users splitting the costs
 			  if change_route?(d, d.users[0], @new_user)[0] 
 			  	#remember the cost for new user
-			  	costs_newuser[d.id] = change_route?(d, d.users[0], @new_user)[1]
+			  	costs_newuser[d.id] = [change_route?(d, d.users[0], @new_user)[1]]
 			  	#and remember who gets off first, what is the cost for the old user
 			  	#[user1_lowerNewCost, whoGetsOffFirst, whoGetsOffSecond]
 			  	costs_infoaboutcab[d.id] = change_route?(d, d.users[0], @new_user)[2..4]
 			  else
-			  	costs_newuser[d.id] = change_route?(d, d.users[0], @new_user)[1]
+			  	costs_newuser[d.id] = [change_route?(d, d.users[0], @new_user)[1]]
 			  end	
-
-		  else
-
 			end
 		end
 		@estimated_price = costs_newuser.values.min[0]
