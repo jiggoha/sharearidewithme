@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "application#home"
+  root "ride#home"
   get "about" => "application#about"
   post "new_ride" => "ride#new_ride"
   get "/show", to: "ride#show", as: 'show'

@@ -1,0 +1,14 @@
+<h1>Request a shared ride</h1>
+
+<%= form_tag("/new_ride", method: "post") do %>
+  <%= label_tag :phone_number %>:
+  <%= text_field_tag :phone_number %><br />
+
+  <%= label_tag :start_location %>:
+  <%= text_field_tag :start_location %><br />
+
+  <%= label_tag :end_location %>:
+  <%= text_field_tag :end_location %><br />
+
+  <%= submit_tag %>
+<% end %>
