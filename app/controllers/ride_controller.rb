@@ -47,7 +47,6 @@ class RideController < ApplicationController
 		@estimated_price = costs_newuser.values.min[0]
 		@saved_cost = costs_newuser.values.max[0] - @estimated_price
 		#if we save anything (this means that we share the cab)
-		binding.pry
 		if @save_cost > 0
 			#if the driver has not yet picked up the guy you share with, set route
 			if(driver.route.length > 1)
@@ -64,7 +63,8 @@ class RideController < ApplicationController
 		d.users[0].cost = costs_infoaboutcab[0]
 		@new_user.cost = @estimated_price
 		driver.user << @new_user
-      
+
+		redirect_to "ride#show"
 		end
 	end
 
